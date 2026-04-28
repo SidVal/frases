@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-04-28T12:46:16.533Z"
+  },
+  "totalPhrases": 1,
+  "topAuthors": [
+    {
+      "author": "Waldo",
+      "count": 1
+    }
+  ],
+  "topWords": [
+    {
+      "word": "web",
+      "count": 1
+    },
+    {
+      "word": "tambien",
+      "count": 1
+    },
+    {
+      "word": "recuerda",
+      "count": 1
+    }
+  ],
+  "phrasesPerDay": [
+    {
+      "date": "2026-04-28",
+      "count": 1
+    }
+  ]
+}
