@@ -1,0 +1,128 @@
+name: Immortalize Issue → JSON
+
+on:
+  issues:
+    types: [labeled]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  immortalize:
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Process issue and update JSON
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+
+            const isManual = context.eventName === 'workflow_dispatch';
+            const issueNumber = isManual
+              ? Number(core.getInput('issue_number'))
+              : context.payload.issue.number;
+
+            const { data: issue } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber
+            });
+
+            // Evitar reprocesar
+            if (issue.labels.some(l => l.name === 'immortalized')) {
+              console.log('Issue ya procesado.');
+              return;
+            }
+
+            const body = issue.body || '';
+
+            const phraseMatch = body.match(/## Frase\s+([\s\S]*?)(?=\n## |\n*$)/i);
+            const authorMatch = body.match(/## Autor\s+([\s\S]*?)(?=\n## |\n*$)/i);
+
+            const text = phraseMatch?.[1]?.trim();
+            const author = authorMatch?.[1]?.trim();
+
+            if (!text || !author) {
+              console.log('Formato inválido, se marca como invalid.');
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: ['invalid']
+              });
+
+              return;
+            }
+
+            const filePath = 'data/phrases.raw.json';
+
+            let data = {
+              meta: { schemaVersion: 1 },
+              phrases: []
+            };
+
+            if (fs.existsSync(filePath)) {
+              data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            }
+
+            data.meta ??= { schemaVersion: 1 };
+            data.phrases ??= [];
+
+            // Evitar duplicados por issue
+            const exists = data.phrases.some(
+              p => p.source?.issueNumber === issueNumber
+            );
+
+            if (exists) {
+              console.log('Issue ya está en JSON.');
+              return;
+            }
+
+            const newEntry = {
+              id: `gh-issue-${issueNumber}`,
+              text,
+              author,
+              createdAt: issue.created_at,
+              status: 'approved',
+              source: {
+                type: 'github_issue',
+                issueNumber,
+                url: issue.html_url
+              }
+            };
+
+            data.phrases.push(newEntry);
+            data.meta.updatedAt = new Date().toISOString();
+
+            fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
+
+            // Labels y cierre
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['immortalized']
+            });
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              state: 'closed'
+            });
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/phrases.raw.json
+          git commit -m "feat(data): immortalize issue" || echo "No changes"
+          git push
