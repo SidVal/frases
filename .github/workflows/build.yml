@@ -1,11 +1,11 @@
 name: Build data
 
 on:
-  #push:
-  #  paths:
-  #    - "data/phrases.raw.json"
-  #    - "scripts/**"
-  #    - "package.json"
+  push:
+    paths:
+      - "data/phrases.raw.json"
+      - "scripts/**"
+      - "package.json"
   workflow_dispatch:
   #schedule:
   #  - cron: "0 * * * *" # opcional: cada hora
