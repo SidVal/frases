@@ -1,8 +1,8 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T17:57:19.537Z",
-    "totalPhrases": 1
+    "generatedAt": "2026-04-28T18:39:24.203Z",
+    "totalPhrases": 3
   },
   "phrases": [
     {
@@ -23,6 +23,44 @@
         "ayudarte"
       ],
       "length": 3
+    },
+    {
+      "id": "gh-issue-3",
+      "text": "Diciendo y haciendo",
+      "author": "Jose Antunez",
+      "createdAt": "2026-04-28T18:34:06Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 3,
+        "url": "https://github.com/SidVal/frases/issues/3"
+      },
+      "hash": "f1c407cf",
+      "normalizedText": "diciendo y haciendo",
+      "tokens": [
+        "diciendo",
+        "haciendo"
+      ],
+      "length": 3
+    },
+    {
+      "id": "gh-issue-2",
+      "text": "Sos brillante",
+      "author": "Jose Antunez",
+      "createdAt": "2026-04-28T18:32:27Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 2,
+        "url": "https://github.com/SidVal/frases/issues/2"
+      },
+      "hash": "081f8c47",
+      "normalizedText": "sos brillante",
+      "tokens": [
+        "sos",
+        "brillante"
+      ],
+      "length": 2
     }
   ]
 }

@@ -1,16 +1,20 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T17:57:19.537Z"
+    "generatedAt": "2026-04-28T18:39:24.203Z"
   },
   "byAuthor": {
     "Jose Antunez": [
-      "gh-issue-1"
+      "gh-issue-1",
+      "gh-issue-3",
+      "gh-issue-2"
     ]
   },
   "byDate": {
     "2026-04-28": [
-      "gh-issue-1"
+      "gh-issue-1",
+      "gh-issue-3",
+      "gh-issue-2"
     ]
   }
 }

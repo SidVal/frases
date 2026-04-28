@@ -1,13 +1,13 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T17:57:19.537Z"
+    "generatedAt": "2026-04-28T18:39:24.203Z"
   },
-  "totalPhrases": 1,
+  "totalPhrases": 3,
   "topAuthors": [
     {
       "author": "Jose Antunez",
-      "count": 1
+      "count": 3
     }
   ],
   "topWords": [
@@ -18,12 +18,28 @@
     {
       "word": "ayudarte",
       "count": 1
+    },
+    {
+      "word": "diciendo",
+      "count": 1
+    },
+    {
+      "word": "haciendo",
+      "count": 1
+    },
+    {
+      "word": "sos",
+      "count": 1
+    },
+    {
+      "word": "brillante",
+      "count": 1
     }
   ],
   "phrasesPerDay": [
     {
       "date": "2026-04-28",
-      "count": 1
+      "count": 3
     }
   ]
 }
