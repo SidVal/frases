@@ -126,3 +126,12 @@ jobs:
           git add data/phrases.raw.json
           git commit -m "feat(data): immortalize issue" || echo "No changes"
           git push
+
+      - name: Rebuild generated data
+        run: npm run build:data
+
+      - name: Commit generated JSON
+        run: |
+          git add data/phrases.json data/stats.json data/indices.json
+          git commit -m "chore(data): rebuild generated JSON" || echo "No generated changes"
+          git push
