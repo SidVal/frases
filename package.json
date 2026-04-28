@@ -1,0 +1,15 @@
+{
+  "name": "frases-inmortales",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web estática para inmortalizar frases con JSON generado por GitHub Actions.",
+  "scripts": {
+    "build:data": "node scripts/build-data.js",
+    "check:data": "node scripts/build-data.js --check"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {}
+}
