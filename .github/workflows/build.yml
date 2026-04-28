@@ -1,0 +1,60 @@
+name: Build data
+
+on:
+  #push:
+  #  paths:
+  #    - "data/phrases.raw.json"
+  #    - "scripts/**"
+  #    - "package.json"
+  workflow_dispatch:
+  #schedule:
+  #  - cron: "0 * * * *" # opcional: cada hora
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build JSON artifacts
+        run: npm run build:data
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/phrases.json data/stats.json data/indices.json
+          git commit -m "chore(data): rebuild JSON artifacts"
+          git push
+
+      - name: Summary
+        run: |
+          echo "Build completed"
