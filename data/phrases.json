@@ -1,8 +1,8 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T15:55:03.050Z",
-    "totalPhrases": 1
+    "generatedAt": "2026-04-28T17:54:49.067Z",
+    "totalPhrases": 2
   },
   "phrases": [
     {
@@ -19,6 +19,25 @@
         "recuerda"
       ],
       "length": 4
+    },
+    {
+      "id": "gh-issue-1",
+      "text": "Ayudame a ayudarte",
+      "author": "Jose Antunez",
+      "createdAt": "2026-04-28T17:41:13Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 1,
+        "url": "https://github.com/SidVal/frases/issues/1"
+      },
+      "hash": "cf2284f8",
+      "normalizedText": "ayudame a ayudarte",
+      "tokens": [
+        "ayudame",
+        "ayudarte"
+      ],
+      "length": 3
     }
   ]
 }

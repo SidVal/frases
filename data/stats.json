@@ -1,12 +1,16 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T15:55:03.050Z"
+    "generatedAt": "2026-04-28T17:54:49.067Z"
   },
-  "totalPhrases": 1,
+  "totalPhrases": 2,
   "topAuthors": [
     {
       "author": "Waldo",
+      "count": 1
+    },
+    {
+      "author": "Jose Antunez",
       "count": 1
     }
   ],
@@ -22,12 +26,20 @@
     {
       "word": "recuerda",
       "count": 1
+    },
+    {
+      "word": "ayudame",
+      "count": 1
+    },
+    {
+      "word": "ayudarte",
+      "count": 1
     }
   ],
   "phrasesPerDay": [
     {
       "date": "2026-04-28",
-      "count": 1
+      "count": 2
     }
   ]
 }

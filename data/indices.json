@@ -1,16 +1,20 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T15:55:03.050Z"
+    "generatedAt": "2026-04-28T17:54:49.067Z"
   },
   "byAuthor": {
     "Waldo": [
       "demo001"
+    ],
+    "Jose Antunez": [
+      "gh-issue-1"
     ]
   },
   "byDate": {
     "2026-04-28": [
-      "demo001"
+      "demo001",
+      "gh-issue-1"
     ]
   }
 }
