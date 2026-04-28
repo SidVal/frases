@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": 1,
     "createdAt": "2026-04-28T00:00:00Z",
-    "updatedAt": "2026-04-28T17:52:21.640Z"
+    "updatedAt": "2026-04-28T18:34:40.638Z"
   },
   "phrases": [
     {
@@ -15,6 +15,18 @@
         "type": "github_issue",
         "issueNumber": 1,
         "url": "https://github.com/SidVal/frases/issues/1"
+      }
+    },
+    {
+      "id": "gh-issue-3",
+      "text": "Diciendo y haciendo",
+      "author": "Jose Antunez",
+      "createdAt": "2026-04-28T18:34:06Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 3,
+        "url": "https://github.com/SidVal/frases/issues/3"
       }
     }
   ]
