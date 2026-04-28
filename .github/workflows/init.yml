@@ -1,0 +1,262 @@
+name: Init static immortalizer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Create project structure
+        run: |
+          mkdir -p data scripts assets/css assets/js
+
+          cat > data/phrases.raw.json <<'EOF'
+          {
+            "meta": {
+              "schemaVersion": 1,
+              "createdAt": "2026-04-28T00:00:00Z"
+            },
+            "phrases": [
+              {
+                "id": "demo001",
+                "text": "La web también recuerda.",
+                "author": "Waldo",
+                "createdAt": "2026-04-28T00:00:00Z",
+                "status": "approved"
+              }
+            ]
+          }
+          EOF
+
+          cat > scripts/build-data.js <<'EOF'
+          import fs from "node:fs";
+          import crypto from "node:crypto";
+
+          const inputPath = "data/phrases.raw.json";
+          const raw = JSON.parse(fs.readFileSync(inputPath, "utf8"));
+
+          const normalize = text =>
+            text
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/[^\p{L}\p{N}\s]/gu, "")
+              .replace(/\s+/g, " ")
+              .trim();
+
+          const tokenize = text =>
+            normalize(text)
+              .split(" ")
+              .filter(word => word.length > 2);
+
+          const approved = raw.phrases
+            .filter(p => p.status === "approved")
+            .map(p => {
+              const normalizedText = normalize(p.text);
+              const hash = crypto
+                .createHash("sha256")
+                .update(normalizedText)
+                .digest("hex")
+                .slice(0, 8);
+
+              return {
+                ...p,
+                hash,
+                normalizedText,
+                tokens: tokenize(p.text),
+                length: p.text.trim().split(/\s+/).length
+              };
+            });
+
+          const countBy = (items, getter) => {
+            const map = new Map();
+
+            for (const item of items) {
+              const key = getter(item);
+              map.set(key, (map.get(key) || 0) + 1);
+            }
+
+            return [...map.entries()]
+              .map(([key, count]) => ({ key, count }))
+              .sort((a, b) => b.count - a.count);
+          };
+
+          const topAuthors = countBy(approved, p => p.author)
+            .map(({ key, count }) => ({ author: key, count }));
+
+          const phrasesPerDay = countBy(approved, p => p.createdAt.slice(0, 10))
+            .map(({ key, count }) => ({ date: key, count }))
+            .sort((a, b) => a.date.localeCompare(b.date));
+
+          const wordMap = new Map();
+
+          for (const phrase of approved) {
+            for (const token of phrase.tokens) {
+              wordMap.set(token, (wordMap.get(token) || 0) + 1);
+            }
+          }
+
+          const topWords = [...wordMap.entries()]
+            .map(([word, count]) => ({ word, count }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 100);
+
+          const byAuthor = {};
+          const byDate = {};
+
+          for (const phrase of approved) {
+            byAuthor[phrase.author] ??= [];
+            byAuthor[phrase.author].push(phrase.id);
+
+            const date = phrase.createdAt.slice(0, 10);
+            byDate[date] ??= [];
+            byDate[date].push(phrase.id);
+          }
+
+          const generatedAt = new Date().toISOString();
+
+          const phrases = {
+            meta: {
+              schemaVersion: 1,
+              generatedAt,
+              totalPhrases: approved.length
+            },
+            phrases: approved
+          };
+
+          const stats = {
+            meta: {
+              schemaVersion: 1,
+              generatedAt
+            },
+            totalPhrases: approved.length,
+            topAuthors,
+            topWords,
+            phrasesPerDay
+          };
+
+          const indices = {
+            meta: {
+              schemaVersion: 1,
+              generatedAt
+            },
+            byAuthor,
+            byDate
+          };
+
+          fs.writeFileSync("data/phrases.json", JSON.stringify(phrases, null, 2));
+          fs.writeFileSync("data/stats.json", JSON.stringify(stats, null, 2));
+          fs.writeFileSync("data/indices.json", JSON.stringify(indices, null, 2));
+          EOF
+
+          cat > index.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta name="description" content="Frases inmortalizadas en una web estática.">
+              <title>Frases inmortales</title>
+              <link rel="stylesheet" href="assets/css/main.css">
+            </head>
+            <body>
+              <main>
+                <h1>Frases inmortales</h1>
+                <p id="counter">Cargando frases...</p>
+                <section id="phrases" aria-label="Listado de frases"></section>
+              </main>
+              <script src="assets/js/main.js" defer></script>
+            </body>
+          </html>
+          EOF
+
+          cat > assets/css/main.css <<'EOF'
+          :root {
+            color-scheme: light dark;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          }
+
+          body {
+            margin: 0;
+            padding: 2rem;
+          }
+
+          main {
+            max-width: 760px;
+            margin: auto;
+          }
+
+          article {
+            padding: 1rem 0;
+            border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+          }
+
+          blockquote {
+            margin: 0;
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            line-height: 1.2;
+          }
+
+          cite {
+            display: block;
+            margin-top: .5rem;
+            opacity: .75;
+            font-style: normal;
+          }
+          EOF
+
+          cat > assets/js/main.js <<'EOF'
+          const counter = document.querySelector("#counter");
+          const container = document.querySelector("#phrases");
+
+          const escapeHTML = value =>
+            String(value).replace(/[&<>"']/g, char => ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;"
+            })[char]);
+
+          fetch("data/phrases.json")
+            .then(response => response.json())
+            .then(data => {
+              counter.textContent = `${data.meta.totalPhrases} frases inmortalizadas`;
+
+              container.innerHTML = data.phrases
+                .map(phrase => `
+                  <article>
+                    <blockquote>${escapeHTML(phrase.text)}</blockquote>
+                    <cite>${escapeHTML(phrase.author)}</cite>
+                  </article>
+                `)
+                .join("");
+            })
+            .catch(() => {
+              counter.textContent = "No se pudieron cargar las frases.";
+            });
+          EOF
+
+      - name: Build generated JSON
+        run: node scripts/build-data.js
+
+      - name: Commit generated structure
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Initialize static phrase immortalizer" || echo "No changes to commit"
+          git push
