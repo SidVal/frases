@@ -6,13 +6,6 @@
   },
   "phrases": [
     {
-      "id": "demo001",
-      "text": "La web también recuerda.",
-      "author": "Waldo",
-      "createdAt": "2026-04-28T00:00:00Z",
-      "status": "approved"
-    },
-    {
       "id": "gh-issue-1",
       "text": "Ayudame a ayudarte",
       "author": "Jose Antunez",
