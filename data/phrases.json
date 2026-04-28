@@ -1,25 +1,10 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T17:54:49.067Z",
-    "totalPhrases": 2
+    "generatedAt": "2026-04-28T17:57:19.537Z",
+    "totalPhrases": 1
   },
   "phrases": [
-    {
-      "id": "demo001",
-      "text": "La web también recuerda.",
-      "author": "Waldo",
-      "createdAt": "2026-04-28T00:00:00Z",
-      "status": "approved",
-      "hash": "05d8e873",
-      "normalizedText": "la web tambien recuerda",
-      "tokens": [
-        "web",
-        "tambien",
-        "recuerda"
-      ],
-      "length": 4
-    },
     {
       "id": "gh-issue-1",
       "text": "Ayudame a ayudarte",
