@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-    <main>
-      <h1>Frases inmortales</h1>
-      <p id="counter">Cargando frases...</p>
-      <section id="phrases" aria-label="Listado de frases"></section>
+    <main class="container">
+        <div id="quote-bubble" class="speech-bubble" style="display: none;">
+            <p id="quote-text"></p>
+            <span id="quote-author"></span>
+        </div>
+        
+        <div class="ninja-bg"></div>
+        
+        <p id="counter" style="position: absolute; bottom: 10px; color: rgba(255,255,255,0.5); font-size: 0.8rem;"></p>
     </main>
     <script src="assets/js/main.js" defer></script>
-  </body>
+</body>
 </html>
