@@ -31,7 +31,7 @@ body {
 .ninja-bg {
     width: 100%;
     height: 100%;
-    background-image: url('tu-imagen-ninja.jpg'); /* [cite: 10] */
+    background-image: url('assets/img/ninja.webp'); /* [cite: 10] */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;
