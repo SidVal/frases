@@ -1,8 +1,8 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-04-28T18:39:24.203Z",
-    "totalPhrases": 3
+    "generatedAt": "2026-05-06T17:27:19.797Z",
+    "totalPhrases": 4
   },
   "phrases": [
     {
@@ -61,6 +61,25 @@
         "brillante"
       ],
       "length": 2
+    },
+    {
+      "id": "gh-issue-4",
+      "text": "Lo pedis lo tenes",
+      "author": "Jose Antunez",
+      "createdAt": "2026-04-29T19:30:02Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 4,
+        "url": "https://github.com/SidVal/frases/issues/4"
+      },
+      "hash": "6863f6dd",
+      "normalizedText": "lo pedis lo tenes",
+      "tokens": [
+        "pedis",
+        "tenes"
+      ],
+      "length": 4
     }
   ]
 }
