@@ -49,7 +49,8 @@ body {
 
 .speech-bubble {
   position: absolute;
-  top: 11%;
+  top: clamp(5%, 6vw, 9%);
+  width: clamp(260px, 60%, 380px);
   left: 50%;
   transform: translateX(-50%);
   max-height: 42svh;
@@ -105,8 +106,8 @@ body {
 /* Celulares chicos */
 @media (max-width: 380px) {
   .speech-bubble {
-    top: clamp(1rem, 6svh, 3rem);
-    width: 88%;
+    top: 7%;
+    width: 86%;
     max-height: 38svh;
     border-radius: 16px;
   }
@@ -130,12 +131,5 @@ body {
 
   #counter {
     display: none;
-  }
-}
-
-/* Pantallas más altas */
-@media (min-height: 780px) {
-  .speech-bubble {
-    top: clamp(4rem, 12svh, 8rem);
   }
 }
