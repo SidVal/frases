@@ -1,13 +1,17 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-07T12:55:49.325Z"
+    "generatedAt": "2026-05-07T12:59:11.186Z"
   },
-  "totalPhrases": 4,
+  "totalPhrases": 5,
   "topAuthors": [
     {
       "author": "Jose #1",
       "count": 4
+    },
+    {
+      "author": "Gera S",
+      "count": 1
     }
   ],
   "topWords": [
@@ -42,6 +46,10 @@
     {
       "word": "tenes",
       "count": 1
+    },
+    {
+      "word": "tengo",
+      "count": 1
     }
   ],
   "phrasesPerDay": [
@@ -51,6 +59,10 @@
     },
     {
       "date": "2026-04-29",
+      "count": 1
+    },
+    {
+      "date": "2026-05-07",
       "count": 1
     }
   ]

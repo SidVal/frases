@@ -1,8 +1,8 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-07T12:55:49.325Z",
-    "totalPhrases": 4
+    "generatedAt": "2026-05-07T12:59:11.186Z",
+    "totalPhrases": 5
   },
   "phrases": [
     {
@@ -80,6 +80,24 @@
         "tenes"
       ],
       "length": 4
+    },
+    {
+      "id": "gh-issue-8",
+      "text": "Si; si tengo.",
+      "author": "Gera S",
+      "createdAt": "2026-05-07T11:54:35Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 8,
+        "url": "https://github.com/SidVal/frases/issues/8"
+      },
+      "hash": "7a9de909",
+      "normalizedText": "si si tengo",
+      "tokens": [
+        "tengo"
+      ],
+      "length": 3
     }
   ]
 }

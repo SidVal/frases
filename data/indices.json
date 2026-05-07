@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-07T12:55:49.325Z"
+    "generatedAt": "2026-05-07T12:59:11.186Z"
   },
   "byAuthor": {
     "Jose #1": [
@@ -9,6 +9,9 @@
       "gh-issue-3",
       "gh-issue-2",
       "gh-issue-4"
+    ],
+    "Gera S": [
+      "gh-issue-8"
     ]
   },
   "byDate": {
@@ -19,6 +22,9 @@
     ],
     "2026-04-29": [
       "gh-issue-4"
+    ],
+    "2026-05-07": [
+      "gh-issue-8"
     ]
   }
 }
