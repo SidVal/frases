@@ -8,7 +8,7 @@
     {
       "id": "gh-issue-1",
       "text": "Ayudame a ayudarte",
-      "author": "Jose Antunez",
+      "author": "Jose #1",
       "createdAt": "2026-04-28T17:41:13Z",
       "status": "approved",
       "source": {
@@ -20,7 +20,7 @@
     {
       "id": "gh-issue-3",
       "text": "Diciendo y haciendo",
-      "author": "Jose Antunez",
+      "author": "Jose #1",
       "createdAt": "2026-04-28T18:34:06Z",
       "status": "approved",
       "source": {
@@ -32,7 +32,7 @@
     {
       "id": "gh-issue-2",
       "text": "Sos brillante",
-      "author": "Jose Antunez",
+      "author": "Jose #1",
       "createdAt": "2026-04-28T18:32:27Z",
       "status": "approved",
       "source": {
@@ -44,7 +44,7 @@
     {
       "id": "gh-issue-4",
       "text": "Lo pedis lo tenes",
-      "author": "Jose Antunez",
+      "author": "Jose #1",
       "createdAt": "2026-04-29T19:30:02Z",
       "status": "approved",
       "source": {
