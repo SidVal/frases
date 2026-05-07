@@ -10,7 +10,6 @@
 
 body {
   margin: 0;
-  padding: 0;
   background-color: var(--bg-color);
   display: flex;
   justify-content: center;
@@ -21,7 +20,6 @@ body {
 }
 
 .container {
-  position: relative;
   width: 100%;
   min-height: 100svh;
   display: flex;
@@ -32,34 +30,45 @@ body {
 
 .scene {
   position: relative;
-  width: min(100vw, 500px);
-  aspect-ratio: 412 / 915;
-  max-height: 100svh;
+  width: min(100vw, var(--container-max));
+  height: 100svh;
+  max-height: 915px;
+  overflow: hidden;
 }
 
 .ninja-bg {
   position: absolute;
   inset: 0;
   background-image: url("../img/ninja.webp");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center center;
   z-index: 1;
 }
 
-.speech-bubble {
+.quote-anchor {
   position: absolute;
-  top: clamp(5%, 6vw, 9%);
-  width: clamp(260px, 60%, 380px);
+  top: 9%;
   left: 50%;
   transform: translateX(-50%);
-  max-height: 42svh;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.speech-bubble {
+  position: relative;
+  width: clamp(230px, 62%, 360px);
+  max-height: 34svh;
   overflow-wrap: break-word;
   background: var(--card-bg);
   border-radius: 20px;
-  padding: clamp(1rem, 4vw, 1.4rem);
+  padding: clamp(.75rem, 3vw, 1.2rem);
   box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
   z-index: 2;
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -68,65 +77,87 @@ body {
 .speech-bubble::after {
   content: "";
   position: absolute;
-  bottom: -18px;
+  bottom: -16px;
   left: 50%;
   transform: translateX(-50%);
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-top: 18px solid var(--card-bg);
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 16px solid var(--card-bg);
+}
+
+.ninja-emoji {
+  margin: .45rem 0 0;
+  font-size: clamp(2rem, 8vw, 3.3rem);
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .55));
 }
 
 #quote-text {
   margin: 0;
   font-weight: 700;
   color: #333;
-  font-size: clamp(1rem, 5vw, 2rem);
+  font-size: clamp(.95rem, 4vw, 1.65rem);
   line-height: 1.2;
 }
 
 #quote-author {
-  margin-top: .75rem;
-  font-size: clamp(.8rem, 2.5vw, .95rem);
+  margin-top: .45rem;
+  font-size: clamp(.65rem, 2vw, .9rem);
   color: #666;
   font-style: italic;
 }
 
 #counter {
   position: absolute;
-  bottom: 10px;
+  bottom: max(10px, env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
   margin: 0;
   color: rgba(255,255,255,0.5);
-  font-size: 0.8rem;
+  font-size: .8rem;
   text-align: center;
+  width: 90%;
 }
 
 /* Celulares chicos */
 @media (max-width: 380px) {
+  .quote-anchor {
+    top: 8%;
+  }
+
   .speech-bubble {
-    top: 7%;
-    width: 86%;
-    max-height: 38svh;
+    width: 68%;
+    max-height: 30svh;
     border-radius: 16px;
   }
 
   #quote-text {
-    font-size: clamp(.95rem, 5.2vw, 1.35rem);
+    font-size: clamp(.85rem, 3.8vw, 1.15rem);
+  }
+
+  .ninja-emoji {
+    font-size: 2.2rem;
   }
 }
 
 /* Celulares horizontales */
 @media (max-height: 520px) and (orientation: landscape) {
-  .speech-bubble {
-    top: 1rem;
-    width: min(70%, 420px);
-    max-height: 55svh;
+  .scene {
+    width: min(100vw, 720px);
   }
 
-  .ninja-bg {
-    background-size: auto 92%;
+  .quote-anchor {
+    top: 5%;
+  }
+
+  .speech-bubble {
+    width: min(55%, 360px);
+    max-height: 45svh;
+  }
+
+  .ninja-emoji {
+    font-size: 2rem;
   }
 
   #counter {
