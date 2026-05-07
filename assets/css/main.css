@@ -22,11 +22,19 @@ body {
 
 .container {
   position: relative;
-  width: min(100vw, var(--container-max));
+  width: 100%;
   min-height: 100svh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  width: min(100vw, 500px);
+  aspect-ratio: 412 / 915;
+  max-height: 100svh;
 }
 
 .ninja-bg {
@@ -41,10 +49,9 @@ body {
 
 .speech-bubble {
   position: absolute;
-  top: clamp(2rem, 9svh, 6rem);
+  top: 11%;
   left: 50%;
   transform: translateX(-50%);
-  width: min(86%, 420px);
   max-height: 42svh;
   overflow-wrap: break-word;
   background: var(--card-bg);
@@ -85,15 +92,14 @@ body {
 
 #counter {
   position: absolute;
+  bottom: 10px;
   left: 50%;
-  bottom: max(.75rem, env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 3;
   margin: 0;
-  color: rgba(255, 255, 255, .55);
-  font-size: .8rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
   text-align: center;
-  width: 90%;
 }
 
 /* Celulares chicos */
