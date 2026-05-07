@@ -1,85 +1,135 @@
 :root {
-    /* Color sólido del borde de la imagen para el body */
-    --bg-color: #050b3d; 
-    --card-bg: rgba(255, 255, 255, 0.95);
+  --bg-color: #0a154c;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --container-max: 500px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color); /*  */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
-    position: relative;
-    width: 100%;
-    max-width: 500px; /* Optimizado para mobile layout [cite: 3] */
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: min(100vw, var(--container-max));
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
-/* El Personaje con Blur */
 .ninja-bg {
-    width: 100%;
-    height: 100%;
-    background-image: url(../img/ninja.webp); /* [cite: 10] */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/ninja.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  z-index: 1;
 }
 
-/* El Globo de Texto (Card) */
 .speech-bubble {
-    position: absolute;
-    top: 15%; /* Posicionado arriba del personaje [cite: 2] */
-    width: 80%;
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  position: absolute;
+  top: clamp(2rem, 9svh, 6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(86%, 420px);
+  max-height: 42svh;
+  overflow-wrap: break-word;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: clamp(1rem, 4vw, 1.4rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+  z-index: 2;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* Triángulo del globo (cola del mensaje) */
 .speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid var(--card-bg);
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 18px solid var(--card-bg);
 }
 
-/* Ajuste automático de fuente */
 #quote-text {
-    margin: 0;
-    font-weight: bold;
-    color: #333;
-    /* Usa clamp para que la letra sea grande si es corta y pequeña si es larga */
-    font-size: clamp(1rem, 5vw, 2rem); 
-    line-height: 1.2;
-    word-wrap: break-word; /* Wrap automático */
+  margin: 0;
+  font-weight: 700;
+  color: #333;
+  font-size: clamp(1rem, 5vw, 2rem);
+  line-height: 1.2;
 }
 
 #quote-author {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
+  margin-top: .75rem;
+  font-size: clamp(.8rem, 2.5vw, .95rem);
+  color: #666;
+  font-style: italic;
+}
+
+#counter {
+  position: absolute;
+  left: 50%;
+  bottom: max(.75rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 3;
+  margin: 0;
+  color: rgba(255, 255, 255, .55);
+  font-size: .8rem;
+  text-align: center;
+  width: 90%;
+}
+
+/* Celulares chicos */
+@media (max-width: 380px) {
+  .speech-bubble {
+    top: clamp(1rem, 6svh, 3rem);
+    width: 88%;
+    max-height: 38svh;
+    border-radius: 16px;
+  }
+
+  #quote-text {
+    font-size: clamp(.95rem, 5.2vw, 1.35rem);
+  }
+}
+
+/* Celulares horizontales */
+@media (max-height: 520px) and (orientation: landscape) {
+  .speech-bubble {
+    top: 1rem;
+    width: min(70%, 420px);
+    max-height: 55svh;
+  }
+
+  .ninja-bg {
+    background-size: auto 92%;
+  }
+
+  #counter {
+    display: none;
+  }
+}
+
+/* Pantallas más altas */
+@media (min-height: 780px) {
+  .speech-bubble {
+    top: clamp(4rem, 12svh, 8rem);
+  }
 }
