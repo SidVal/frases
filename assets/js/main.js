@@ -25,7 +25,7 @@ fetch("data/phrases.json")
 
       // 2. Inyectar datos en el globo (CSS se encarga del wrap y clamp)
       quoteText.innerHTML = `"${escapeHTML(selectedPhrase.text)}"`;
-      quoteAuthor.textContent = `— ${escapeHTML(selectedPhrase.author)}`;
+      quoteAuthor.textContent = `- ${escapeHTML(selectedPhrase.author)}`;
       
       // Mostrar el globo después de cargar el texto
       bubble.style.display = "flex";
