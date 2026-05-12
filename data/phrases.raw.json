@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": 1,
     "createdAt": "2026-04-28T00:00:00Z",
-    "updatedAt": "2026-05-07T12:59:08.256Z"
+    "updatedAt": "2026-05-12T15:12:49.610Z"
   },
   "phrases": [
     {
@@ -63,6 +63,18 @@
         "type": "github_issue",
         "issueNumber": 8,
         "url": "https://github.com/SidVal/frases/issues/8"
+      }
+    },
+    {
+      "id": "gh-issue-9",
+      "text": "Hoy vamos con todo 💪",
+      "author": "Jose #1",
+      "createdAt": "2026-05-12T15:12:02Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 9,
+        "url": "https://github.com/SidVal/frases/issues/9"
       }
     }
   ]
