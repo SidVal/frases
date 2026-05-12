@@ -1,9 +1,9 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-12T15:13:06.791Z"
+    "generatedAt": "2026-05-12T15:14:25.669Z"
   },
-  "totalPhrases": 6,
+  "totalPhrases": 7,
   "topAuthors": [
     {
       "author": "Jose #1",
@@ -11,6 +11,10 @@
     },
     {
       "author": "Gera S",
+      "count": 1
+    },
+    {
+      "author": "Ariel P.",
       "count": 1
     }
   ],
@@ -66,6 +70,10 @@
     {
       "word": "todo",
       "count": 1
+    },
+    {
+      "word": "cuchia",
+      "count": 1
     }
   ],
   "phrasesPerDay": [
@@ -83,7 +91,7 @@
     },
     {
       "date": "2026-05-12",
-      "count": 1
+      "count": 2
     }
   ]
 }
