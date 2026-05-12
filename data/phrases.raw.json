@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": 1,
     "createdAt": "2026-04-28T00:00:00Z",
-    "updatedAt": "2026-05-12T15:12:49.610Z"
+    "updatedAt": "2026-05-12T15:14:23.091Z"
   },
   "phrases": [
     {
@@ -75,6 +75,18 @@
         "type": "github_issue",
         "issueNumber": 9,
         "url": "https://github.com/SidVal/frases/issues/9"
+      }
+    },
+    {
+      "id": "gh-issue-10",
+      "text": "Cuchia ...",
+      "author": "Ariel P.",
+      "createdAt": "2026-05-12T15:12:59Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 10,
+        "url": "https://github.com/SidVal/frases/issues/10"
       }
     }
   ]
