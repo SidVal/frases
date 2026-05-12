@@ -1,8 +1,8 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "generatedAt": "2026-05-07T12:59:11.186Z",
-    "totalPhrases": 5
+    "generatedAt": "2026-05-12T15:12:53.817Z",
+    "totalPhrases": 6
   },
   "phrases": [
     {
@@ -98,6 +98,27 @@
         "tengo"
       ],
       "length": 3
+    },
+    {
+      "id": "gh-issue-9",
+      "text": "Hoy vamos con todo 💪",
+      "author": "Jose #1",
+      "createdAt": "2026-05-12T15:12:02Z",
+      "status": "approved",
+      "source": {
+        "type": "github_issue",
+        "issueNumber": 9,
+        "url": "https://github.com/SidVal/frases/issues/9"
+      },
+      "hash": "3db94b9c",
+      "normalizedText": "hoy vamos con todo",
+      "tokens": [
+        "hoy",
+        "vamos",
+        "con",
+        "todo"
+      ],
+      "length": 5
     }
   ]
 }
